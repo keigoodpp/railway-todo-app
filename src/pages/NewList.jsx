@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import { useCookies } from "react-cookie";
-import axios from "axios";
-import { Header } from "../components/Header";
-import { useNavigate } from "react-router-dom"; // useHistoryの代わりにuseNavigateを使用
-import { url } from "../const";
-import "./newList.css";
+import React, { useState } from 'react';
+import { useCookies } from 'react-cookie';
+import axios from 'axios';
+import { Header } from '../components/Header';
+import { useNavigate } from 'react-router-dom'; // useHistoryの代わりにuseNavigateを使用
+import { url } from '../const';
+import './newList.css';
 
 export const NewList = () => {
   const [cookies] = useCookies();
   const navigate = useNavigate(); // useNavigateの使用
-  const [title, setTitle] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  const [title, setTitle] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleTitleChange = (e) => setTitle(e.target.value);
 
@@ -26,7 +26,7 @@ export const NewList = () => {
         },
       })
       .then(() => {
-        navigate("/"); // history.pushをnavigateに変更
+        navigate('/'); // history.pushをnavigateに変更
       })
       .catch((err) => {
         setErrorMessage(`リストの作成に失敗しました。${err}`);

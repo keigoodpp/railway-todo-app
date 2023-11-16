@@ -1,20 +1,20 @@
-import axios from "axios";
-import React, { useState, useEffect } from "react"; // useEffectをインポート
-import { useCookies } from "react-cookie";
-import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom"; // useHistoryの代わりにuseNavigateを使用
-import { signIn } from "../authSlice";
-import { Header } from "../components/Header";
-import { url } from "../const";
-import "./signUp.css";
+import axios from 'axios';
+import React, { useState, useEffect } from 'react'; // useEffectをインポート
+import { useCookies } from 'react-cookie';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom'; // useHistoryの代わりにuseNavigateを使用
+import { signIn } from '../authSlice';
+import { Header } from '../components/Header';
+import { url } from '../const';
+import './signUp.css';
 
 export const SignUp = () => {
   const navigate = useNavigate(); // useNavigateの使用
   const auth = useSelector((state) => state.auth.isSignIn);
   const dispatch = useDispatch();
-  const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
+  const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessge] = useState();
   const [cookies, setCookie, removeCookie] = useCookies();
   const handleEmailChange = (e) => setEmail(e.target.value);
@@ -33,8 +33,8 @@ export const SignUp = () => {
       .then((res) => {
         const token = res.data.token;
         dispatch(signIn());
-        setCookie("token", token);
-        navigate("/"); // history.pushをnavigateに変更
+        setCookie('token', token);
+        navigate('/'); // history.pushをnavigateに変更
       })
       .catch((err) => {
         setErrorMessge(`サインアップに失敗しました。 ${err}`);
@@ -44,7 +44,7 @@ export const SignUp = () => {
   // authの状態に基づくリダイレクト処理をuseEffectに移動
   useEffect(() => {
     if (auth) {
-      navigate("/"); // Redirectをnavigateに変更
+      navigate('/'); // Redirectをnavigateに変更
     }
   }, [auth, navigate]);
 

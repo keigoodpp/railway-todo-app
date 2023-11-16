@@ -1,22 +1,22 @@
-import React, { useEffect, useState } from "react";
-import { Header } from "../components/Header";
-import axios from "axios";
-import { useCookies } from "react-cookie";
-import { url } from "../const";
-import { useNavigate, useParams } from "react-router-dom"; // useHistory を useNavigate に置き換え
-import "./editTask.css";
+import React, { useEffect, useState } from 'react';
+import { Header } from '../components/Header';
+import axios from 'axios';
+import { useCookies } from 'react-cookie';
+import { url } from '../const';
+import { useNavigate, useParams } from 'react-router-dom'; // useHistory を useNavigate に置き換え
+import './editTask.css';
 
 export const EditTask = () => {
   const history = useNavigate(); // useHistory を useNavigate に変更
   const { listId, taskId } = useParams();
   const [cookies] = useCookies();
-  const [title, setTitle] = useState("");
-  const [detail, setDetail] = useState("");
+  const [title, setTitle] = useState('');
+  const [detail, setDetail] = useState('');
   const [isDone, setIsDone] = useState(false); // デフォルト値を設定
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState('');
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleDetailChange = (e) => setDetail(e.target.value);
-  const handleIsDoneChange = (e) => setIsDone(e.target.value === "done");
+  const handleIsDoneChange = (e) => setIsDone(e.target.value === 'done');
 
   const onUpdateTask = () => {
     console.log(isDone);
@@ -34,7 +34,7 @@ export const EditTask = () => {
       })
       .then((res) => {
         console.log(res.data);
-        history("/");
+        history('/');
       })
       .catch((err) => {
         setErrorMessage(`更新に失敗しました。${err}`);
@@ -49,7 +49,7 @@ export const EditTask = () => {
         },
       })
       .then(() => {
-        history("/");
+        history('/');
       })
       .catch((err) => {
         setErrorMessage(`削除に失敗しました。${err}`);

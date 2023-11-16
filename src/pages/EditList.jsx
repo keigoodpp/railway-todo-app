@@ -1,16 +1,16 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useCookies } from "react-cookie";
-import { useNavigate, useParams } from "react-router-dom"; // useHistoryをuseNavigateに変更
-import { Header } from "../components/Header";
-import { url } from "../const";
-import "./editList.css";
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useCookies } from 'react-cookie';
+import { useNavigate, useParams } from 'react-router-dom'; // useHistoryをuseNavigateに変更
+import { Header } from '../components/Header';
+import { url } from '../const';
+import './editList.css';
 
 export const EditList = () => {
   const navigate = useNavigate(); // useNavigateを使用
   const { listId } = useParams();
-  const [title, setTitle] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  const [title, setTitle] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const [cookies] = useCookies();
   const handleTitleChange = (e) => setTitle(e.target.value);
 
@@ -26,7 +26,7 @@ export const EditList = () => {
         },
       })
       .then(() => {
-        navigate("/"); // history.pushをnavigateに変更
+        navigate('/'); // history.pushをnavigateに変更
       })
       .catch((err) => {
         setErrorMessage(`更新に失敗しました。 ${err}`);
@@ -41,7 +41,7 @@ export const EditList = () => {
         },
       })
       .then(() => {
-        navigate("/"); // history.pushをnavigateに変更
+        navigate('/'); // history.pushをnavigateに変更
       })
       .catch((err) => {
         setErrorMessage(`削除に失敗しました。${err}`);

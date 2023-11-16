@@ -1,9 +1,9 @@
-import React from "react";
-import { useCookies } from "react-cookie";
-import { useSelector, useDispatch } from "react-redux/es/exports";
-import { useNavigate } from "react-router-dom"; // useHistoryの代わりにuseNavigateを使用
-import { signOut } from "../authSlice";
-import "./header.css";
+import React from 'react';
+import { useCookies } from 'react-cookie';
+import { useSelector, useDispatch } from 'react-redux/es/exports';
+import { useNavigate } from 'react-router-dom'; // useHistoryの代わりにuseNavigateを使用
+import { signOut } from '../authSlice';
+import './header.css';
 
 export const Header = () => {
   const auth = useSelector((state) => state.auth.isSignIn);
@@ -13,8 +13,8 @@ export const Header = () => {
 
   const handleSignOut = () => {
     dispatch(signOut());
-    removeCookie("token");
-    navigate("/signin"); // history.pushをnavigateに変更
+    removeCookie('token');
+    navigate('/signin'); // history.pushをnavigateに変更
   };
 
   return (

@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { useCookies } from "react-cookie";
-import axios from "axios";
-import { url } from "../const";
-import { Header } from "../components/Header";
-import "./newTask.css";
-import { useNavigate } from "react-router-dom"; // 1. useHistory の代わりに useNavigate をインポート
+import React, { useState, useEffect } from 'react';
+import { useCookies } from 'react-cookie';
+import axios from 'axios';
+import { url } from '../const';
+import { Header } from '../components/Header';
+import './newTask.css';
+import { useNavigate } from 'react-router-dom'; // 1. useHistory の代わりに useNavigate をインポート
 
 export const NewTask = () => {
   const [selectListId, setSelectListId] = useState();
   const [lists, setLists] = useState([]);
-  const [title, setTitle] = useState("");
-  const [detail, setDetail] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  const [title, setTitle] = useState('');
+  const [detail, setDetail] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const [cookies] = useCookies();
   const navigate = useNavigate(); // 1. useNavigate を使用
 
@@ -33,7 +33,7 @@ export const NewTask = () => {
         },
       })
       .then(() => {
-        navigate("/"); // 1. ナビゲーションは navigate 関数を使用
+        navigate('/'); // 1. ナビゲーションは navigate 関数を使用
       })
       .catch((err) => {
         setErrorMessage(`タスクの作成に失敗しました。${err}`);
