@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Header } from '../components/Header';
 import { useNavigate } from 'react-router-dom'; // useHistoryの代わりにuseNavigateを使用
 import { url } from '../const';
-import './newList.css';
+import './newList.scss';
 
 export const NewList = () => {
   const [cookies] = useCookies();

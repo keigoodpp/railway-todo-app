@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'; // useHistoryの代わりにuseN
 import { signIn } from '../authSlice';
 import { Header } from '../components/Header';
 import { url } from '../const';
-import './signUp.css';
+import './signUp.scss';
 
 export const SignUp = () => {
   const navigate = useNavigate(); // useNavigateの使用
@@ -20,6 +20,11 @@ export const SignUp = () => {
   const handleEmailChange = (e) => setEmail(e.target.value);
   const handleNameChange = (e) => setName(e.target.value);
   const handlePasswordChange = (e) => setPassword(e.target.value);
+
+  // urlの値をコンソールに表示
+  useEffect(() => {
+    console.log(url);
+  }, []);
 
   const onSignUp = () => {
     const data = {

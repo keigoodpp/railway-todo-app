@@ -4,7 +4,7 @@ import { useCookies } from 'react-cookie';
 import { useNavigate, useParams } from 'react-router-dom'; // useHistoryをuseNavigateに変更
 import { Header } from '../components/Header';
 import { url } from '../const';
-import './editList.css';
+import './editList.scss';
 
 export const EditList = () => {
   const navigate = useNavigate(); // useNavigateを使用
