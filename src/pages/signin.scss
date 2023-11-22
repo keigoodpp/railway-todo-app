@@ -7,33 +7,53 @@ $white-color: #ffffff;
 $error-color: #ff3333;
 
 .signin {
-  width: 500px;
+  width: 100%; // 幅を100%に設定
+  max-width: 500px; // 最大幅を500pxに設定
   margin: 0 auto;
-}
+  padding: 0 15px; // パディングを追加
 
-.signin-form {
-  margin: 25px 0;
-}
+  .signin-form {
+    margin: 25px 0;
+  }
 
-.email-label,
-.password-label {
-  color: $text-color;
-}
+  .email-label,
+  .password-label {
+    color: $text-color;
+  }
 
-.email-input,
-.password-input {
-  width: 100%;
-  font-size: large;
-  height: 30px;
-  margin-bottom: 25px;
-}
+  .email-input,
+  .password-input {
+    width: 100%;
+    font-size: 16px; // 基本のフォントサイズを指定
+    height: auto; // 高さを自動調整
+    padding: 10px; // フィールド内のパディングを追加
+    margin-bottom: 25px;
+  }
 
-.signin-button {
-  background-color: $primary-color;
-  color: $white-color;
-  width: 100px;
-  height: 40px;
-  border-radius: 5px;
+  .signin-button {
+    background-color: $primary-color;
+    color: $white-color;
+    width: 100%; // 幅を100%に設定
+    height: 40px;
+    border-radius: 5px;
+  }
+
+  // メディアクエリ
+  @media (max-width: 768px) {
+    padding: 0 10px;
+
+    .signin-form {
+      font-size: 14px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    padding: 0 5px;
+
+    .signin-form {
+      font-size: 12px;
+    }
+  }
 }
 
 .error-message {

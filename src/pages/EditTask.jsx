@@ -3,27 +3,40 @@ import { Header } from '../components/Header';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import { url } from '../const';
-import { useNavigate, useParams } from 'react-router-dom'; // useHistory を useNavigate に置き換え
+import { useNavigate, useParams } from 'react-router-dom';
 import './editTask.scss';
 
 export const EditTask = () => {
-  const history = useNavigate(); // useHistory を useNavigate に変更
+  const history = useNavigate();
   const { listId, taskId } = useParams();
   const [cookies] = useCookies();
   const [title, setTitle] = useState('');
   const [detail, setDetail] = useState('');
-  const [isDone, setIsDone] = useState(false); // デフォルト値を設定
+  const [utcTimeForDisplay, setUtcTimeForDisplay] = useState(''); // ユーザーに表示するためのUTC日時
+  const [deadline, setDeadline] = useState(''); // PUTリクエストで使用する完全なUTC日時
+  const [isDone, setIsDone] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleDetailChange = (e) => setDetail(e.target.value);
   const handleIsDoneChange = (e) => setIsDone(e.target.value === 'done');
 
+  const handleDeadlineChange = (e) => {
+    const localTime = new Date(e.target.value);
+    const offset = localTime.getTimezoneOffset() * 60000;
+    const utcTime = new Date(localTime.getTime() - offset).toISOString();
+    const deadline = new Date(localTime.getTime()).toISOString();
+    setUtcTimeForDisplay(utcTime.slice(0, 16)); // 表示用のUTC日時
+    setDeadline(deadline); // PUTリクエストで使用する完全なUTC日時
+  };
+
+  // PUTリクエストを送信する際には完全なUTC日時を使用
   const onUpdateTask = () => {
-    console.log(isDone);
     const data = {
       title: title,
       detail: detail,
       done: isDone,
+      limit: deadline, // 完全なUTC日時を使用
     };
 
     axios
@@ -33,7 +46,6 @@ export const EditTask = () => {
         },
       })
       .then((res) => {
-        console.log(res.data);
         history('/');
       })
       .catch((err) => {
@@ -68,6 +80,22 @@ export const EditTask = () => {
         setTitle(task.title);
         setDetail(task.detail);
         setIsDone(task.done);
+
+        // UTC日時をローカル日時に変換
+        if (task.limit) {
+          const utcDate = new Date(task.limit);
+          const localDate = new Date(
+            utcDate.getTime() - utcDate.getTimezoneOffset() * 60000,
+          );
+          const formattedDate = localDate.toISOString().slice(0, 16); // yyyy-MM-ddThh:mm 形式に変換
+          const deadline = new Date(
+            utcDate.getTime() - utcDate.getTimezoneOffset() * 0,
+          );
+          setUtcTimeForDisplay(formattedDate); // 表示用のUTC日時を設定
+          setDeadline(deadline.toISOString()); // 完全なUTC日時を設定
+        } else {
+          setDeadline('');
+        }
       })
       .catch((err) => {
         setErrorMessage(`タスク情報の取得に失敗しました。${err}`);
@@ -93,10 +121,18 @@ export const EditTask = () => {
           <label>詳細</label>
           <br />
           <textarea
-            type="text"
             onChange={handleDetailChange}
             className="edit-task-detail"
             value={detail}
+          />
+          <br />
+          <label>期限日時</label>
+          <br />
+          <input
+            type="datetime-local"
+            onChange={handleDeadlineChange}
+            className="edit-task-deadline"
+            value={utcTimeForDisplay} // 表示用のUTC日時を表示
           />
           <br />
           <div>
@@ -106,7 +142,7 @@ export const EditTask = () => {
               name="status"
               value="todo"
               onChange={handleIsDoneChange}
-              checked={!isDone} // チェックを正しく設定
+              checked={!isDone}
             />
             未完了
             <input
@@ -115,7 +151,7 @@ export const EditTask = () => {
               name="status"
               value="done"
               onChange={handleIsDoneChange}
-              checked={isDone} // チェックを正しく設定
+              checked={isDone}
             />
             完了
           </div>

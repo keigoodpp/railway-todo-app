@@ -7,33 +7,68 @@ $white-color: #ffffff;
 $error-color: #ff3333;
 
 .new-task {
-  width: 1000px;
+  width: 100%; // 幅を100%に設定
+  max-width: 1000px; // 最大幅を1000pxに設定
   margin: 0 auto;
-}
+  padding: 0 15px; // パディングを追加
 
-.new-task-form {
-  color: $text-color;
-}
+  .new-task-form {
+    color: $text-color;
+  }
 
-.new-task-select-list,
-.new-task-title,
-.new-task-detail {
-  width: 300px;
-  margin-bottom: 25px;
-}
+  .new-task-select-list,
+  .new-task-title,
+  .new-task-detail {
+    width: 100%; // 幅を100%に設定
+    max-width: 300px; // 最大幅を300pxに設定
+    margin-bottom: 25px;
+  }
 
-.new-task-detail {
-  height: 200px;
-}
+  .new-task-detail {
+    height: auto; // 高さを自動調整
+  }
 
-.new-task-button {
-  background-color: $primary-color;
-  color: $white-color;
-  width: 80px;
-  height: 40px;
-  border-radius: 5px;
+  .new-task-deadline {
+    width: 100%; // 幅を100%に設定
+    max-width: 300px; // 最大幅を300pxに設定
+    margin-bottom: 25px;
+  }
+
+  .new-task-button {
+    background-color: $primary-color;
+    color: $white-color;
+    width: 100%; // 幅を100%に設定
+    max-width: 80px; // 最大幅を80pxに設定
+    height: 40px;
+    border-radius: 5px;
+  }
 }
 
 .error-message {
   color: $error-color;
+}
+
+// メディアクエリ
+@media (max-width: 768px) {
+  .new-task {
+    padding: 0 10px;
+
+    .new-task-title,
+    .new-task-detail,
+    .new-task-deadline {
+      font-size: 14px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .new-task {
+    padding: 0 5px;
+
+    .new-task-title,
+    .new-task-detail,
+    .new-task-deadline {
+      font-size: 12px;
+    }
+  }
 }

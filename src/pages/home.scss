@@ -11,6 +11,17 @@ $error-color: #ff3333;
   margin: 50px auto;
   list-style: none;
   width: 1000px;
+
+  // タブレットサイズでの調整
+  @media (max-width: 768px) {
+    width: 90%; // 全体の幅を画面幅に対して相対的に調整
+  }
+
+  // スマートフォンサイズでの調整
+  @media (max-width: 320px) {
+    margin: 20px auto;
+    width: 95%; // さらに幅を広げる
+  }
 }
 
 .list-header {
@@ -37,6 +48,22 @@ $error-color: #ff3333;
     justify-content: center;
     align-items: center;
   }
+
+  // タブレットサイズでの調整
+  @media (max-width: 768px) {
+    &-item {
+      padding: 0 10px; // タブのパディングを減らす
+      width: 80px; // タブの幅を小さくする
+    }
+  }
+
+  // スマートフォンサイズでの調整
+  @media (max-width: 320px) {
+    &-item {
+      padding: 0 5px; // タブのパディングをさらに減らす
+      width: 60px; // タブの幅をさらに小さくする
+    }
+  }
 }
 
 .active {
@@ -54,20 +81,26 @@ $error-color: #ff3333;
 
   .task-item {
     list-style-type: none;
-    height: 70px;
     width: calc(100% - 25px);
     background-color: $background-light;
     padding-left: 25px;
     font-size: large;
     border: solid 1px $white-color;
+    margin-top: 3px;
+    margin-bottom: 3px;
 
-    .task-item-link {
-      display: block;
-      width: 100%;
-      height: 100%;
-      text-decoration: none;
-      color: $text-color;
+    // スマートフォンサイズでの調整
+    @media (max-width: 320px) {
+      font-size: medium; // フォントサイズを小さくする
     }
+  }
+
+  .task-item-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: $text-color;
   }
 }
 
@@ -78,6 +111,12 @@ $error-color: #ff3333;
 .display-select-wrapper {
   width: 100px;
   margin: 0 0 25px auto;
+
+  // スマートフォンサイズでの調整
+  @media (max-width: 320px) {
+    width: 80%; // 幅を調整
+    margin: 0 auto 20px; // 中央に配置
+  }
 }
 
 .display-select {

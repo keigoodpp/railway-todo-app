@@ -7,8 +7,10 @@ $error-color: #ff3333;
 $text-color: #555555;
 
 .edit-task {
-  width: 1000px;
+  width: 100%; // 幅を100%に設定
+  max-width: 1000px; // 最大幅を1000pxに設定
   margin: 0 auto;
+  padding: 0 15px; // パディングを追加
 
   &-form {
     color: $text-color;
@@ -16,23 +18,32 @@ $text-color: #555555;
 
   &-title,
   &-detail {
-    width: 300px;
+    width: 100%; // 幅を100%に設定
+    max-width: 300px; // 最大幅を300pxに設定
     margin-bottom: 25px;
   }
 
   &-button {
     background-color: $primary-color;
     color: $white-color;
-    width: 80px;
+    width: 100%; // 幅を100%に設定
+    max-width: 80px; // 最大幅を80pxに設定
     height: 40px;
     border-radius: 5px;
   }
 }
 
+.edit-task-deadline {
+  width: 100%; // 幅を100%に設定
+  max-width: 300px; // 最大幅を300pxに設定
+  margin-bottom: 25px;
+}
+
 .delete-task-button {
   color: $error-color;
   border: solid 1px $error-color;
-  width: 80px;
+  width: 100%; // 幅を100%に設定
+  max-width: 80px; // 最大幅を80pxに設定
   height: 40px;
   margin: 25px 5px;
   border-radius: 5px;
@@ -40,4 +51,35 @@ $text-color: #555555;
 
 .error-message {
   color: $error-color;
+}
+
+// メディアクエリ
+@media (max-width: 768px) {
+  .edit-task {
+    padding: 0 10px;
+
+    &-title,
+    &-detail {
+      font-size: 14px;
+    }
+  }
+
+  .delete-task-button {
+    margin: 20px 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .edit-task {
+    padding: 0 5px;
+
+    &-title,
+    &-detail {
+      font-size: 12px;
+    }
+  }
+
+  .delete-task-button {
+    margin: 15px 3px;
+  }
 }

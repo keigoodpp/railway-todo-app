@@ -6,23 +6,44 @@ $text-color: #555555;
 $white-color: #ffffff;
 
 .new-list {
-  width: 1000px;
+  width: 100%; // 幅を100%に設定
+  max-width: 1000px; // 最大幅を1000pxに設定
   margin: 0 auto;
-}
+  padding: 0 15px; // パディングを追加
 
-.new-list-form {
-  color: $text-color;
-}
+  .new-list-form {
+    color: $text-color;
+  }
 
-.new-list-title {
-  width: 300px;
-  margin-bottom: 25px;
-}
+  .new-list-title {
+    width: 100%; // 幅を100%に設定
+    max-width: 300px; // 最大幅を300pxに設定
+    margin-bottom: 25px;
+  }
 
-.new-list-button {
-  background-color: $primary-color;
-  color: $white-color;
-  width: 80px;
-  height: 40px;
-  border-radius: 5px;
+  .new-list-button {
+    background-color: $primary-color;
+    color: $white-color;
+    width: 100%; // 幅を100%に設定
+    max-width: 80px; // 最大幅を80pxに設定
+    height: 40px;
+    border-radius: 5px;
+  }
+
+  // メディアクエリ
+  @media (max-width: 768px) {
+    padding: 0 10px;
+
+    .new-list-title {
+      font-size: 14px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    padding: 0 5px;
+
+    .new-list-title {
+      font-size: 12px;
+    }
+  }
 }

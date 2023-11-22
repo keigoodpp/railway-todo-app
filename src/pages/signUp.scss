@@ -6,9 +6,16 @@ $text-color: #555555;
 $white-color: #ffffff;
 $error-color: #ff3333;
 
+// 全ての要素に適用されるボックスサイジング
+* {
+  box-sizing: border-box;
+}
+
 .signup {
-  width: 500px;
+  width: 100%;
+  max-width: 500px;
   margin: 0 auto;
+  padding: 0 15px; // パディングを追加
 
   &-form {
     margin: 25px 0;
@@ -22,6 +29,7 @@ $error-color: #ff3333;
     font-size: large;
     height: 30px;
     margin-bottom: 25px;
+    padding: 5px; // フィールド内のパディングを追加
   }
 
   &-button {
@@ -30,6 +38,23 @@ $error-color: #ff3333;
     width: 100px;
     height: 40px;
     border-radius: 5px;
+  }
+
+  // メディアクエリ内での正しい使用方法
+  @media (max-width: 768px) {
+    padding: 0 10px;
+
+    &-form {
+      font-size: 16px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    padding: 0 5px;
+
+    &-form {
+      font-size: 14px;
+    }
   }
 }
 
